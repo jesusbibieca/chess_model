@@ -1,0 +1,31 @@
+Tener una class para piezas en general
+    Que poseera
+        si fue capturada
+        su color
+        posicion actual
+        movimientos posibles
+        posicion inicial
+
+    class pawn
+        promotion
+
+    class queen
+
+
+____________________________________
+
+metodos:
+
+- valid_movements() retorna todos los posibles espacios donde se moveria una pieza
+- move() cambie la posicion de una ficha a una nueva pos, simpre que sea val
+
+
+Hola!
+He aqui tu proyecto:
+Desarrollar la logica de dos ficha (Reina y Peon) del juego de ajedrez
+Se me olvido aclararte lo sgte:
+Investiga sobre en que consiste el juego, te vas a basar lo aprendido en el curso programacion enfocado a objeto, no tienes que enfocarte en grafico ni nada parecido solo a nivel de logica .
+ Cualquier pregunta puedes contactar a Ismael 
+Tienes 1 mes para entregar el proyecto 
+
+Suerte!
