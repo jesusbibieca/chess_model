@@ -11,7 +11,7 @@
 
     Suerte!
 '''
-import random
+from random import choice
 
 class Piece(object):
 	"""Initialize the basic attributes of a chess piece"""
@@ -28,15 +28,25 @@ class Piece(object):
 		return self.color
 
 	def get_status(self):
-		"""Returns the color, actual pos, if its been attacked"""
+		"""Returns the color, actual pos. (expect to add also if it is been attacked)"""
 		try:
 			if self.captured == False:
-				return 'This pawn is ' + self.color + " and It's actual position is " + self.actual_pos
+				return 'This piece is ' + self.color + " and It's actual position is " + self.actual_pos
+			elif self.captured == True:
+				return "Piece was captured already."
 		except:
 			return "The initial values have not been initialized yet."
 
 	def set_initial_position(self, position):
-		self.actual_pos = position
+		self.initial_pos = position
+		if self.actual_pos == None:
+			self.actual_pos = position
+
+	def move(self, where):
+		self.actual_pos = where
+
+	def get_position(self):
+		return self.actual_pos
 	
 class Pawn(Piece):
 	def __str__(self):
@@ -65,6 +75,9 @@ class Board(object):
 p1 = Pawn('white')
 p2 = Pawn('white')
 chess = Board().get_board()
-position_setter = random.choice(chess[6])
+position_setter = choice(chess[6])
 p2.set_initial_position(position_setter)
 print p2.get_status()
+new_move = raw_input("Move the pawn ")
+p2.move(new_move)
+print p2.get_position()
