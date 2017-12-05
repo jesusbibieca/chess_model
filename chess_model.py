@@ -11,6 +11,7 @@
 
     Suerte!
 '''
+import random
 
 class Piece(object):
 	"""Initialize the basic attributes of a chess piece"""
@@ -23,11 +24,9 @@ class Piece(object):
 		self.initial_pos = None
 		# self.pieceCount = 1
 		# self.board1 = board()
-
 	
-class Pawn(Piece):
-	def set_position(self, position):
-		self.actual_pos = position
+	def get_color(self):
+		return self.color
 
 	def get_status(self):
 		"""Returns the color, actual pos, if its been attacked"""
@@ -36,10 +35,20 @@ class Pawn(Piece):
 				return 'This pawn is ' + self.color + ' and Its actual position is ' + self.actual_pos
 		except:
 			return "The initial values have not been initialized yet."
+
+	def set_initial_position(self, position):
+		self.actual_pos = position
+
+	
+class Pawn(Piece):
+	def __str__(self):
+		return "This is a Pawn instance."
+	
 	
 
 class Queen(Piece):
 	pass
+	
 
 class Board(object):
 	def __init__(self):
@@ -59,8 +68,10 @@ class Board(object):
 
 p1 = Pawn('white')
 p2 = Pawn('white')
-p2.set_position("A2")
-# print p2.get_status()
-
 chess = Board()
-print chess.get_board('')
+position_setter = random.choice(chess.get_board('')[6])
+p2.set_initial_position(position_setter)
+print p2
+
+
+# print random.choice(chess.get_board('')[6])
