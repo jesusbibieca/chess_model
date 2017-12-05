@@ -23,8 +23,7 @@ class Piece(object):
 		self.valid_movements = None
 		self.initial_pos = None
 		# self.pieceCount = 1
-		# self.board1 = board()
-	
+			
 	def get_color(self):
 		return self.color
 
@@ -32,24 +31,21 @@ class Piece(object):
 		"""Returns the color, actual pos, if its been attacked"""
 		try:
 			if self.captured == False:
-				return 'This pawn is ' + self.color + ' and Its actual position is ' + self.actual_pos
+				return 'This pawn is ' + self.color + " and It's actual position is " + self.actual_pos
 		except:
 			return "The initial values have not been initialized yet."
 
 	def set_initial_position(self, position):
 		self.actual_pos = position
-
 	
 class Pawn(Piece):
 	def __str__(self):
-		return "This is a Pawn instance."
+		return "This is a Pawn's instance."
 	
-	
-
 class Queen(Piece):
-	pass
+	def __str__(self):
+		return "This is a Queen's instance."
 	
-
 class Board(object):
 	def __init__(self):
 		self.color_board = [['BW'[(i + j + 8 % 2 + 1) % 2] for i in range(8)] for j in range(8)]
@@ -68,10 +64,7 @@ class Board(object):
 
 p1 = Pawn('white')
 p2 = Pawn('white')
-chess = Board()
-position_setter = random.choice(chess.get_board('')[6])
+chess = Board().get_board()
+position_setter = random.choice(chess[6])
 p2.set_initial_position(position_setter)
-print p2
-
-
-# print random.choice(chess.get_board('')[6])
+print p2.get_status()
