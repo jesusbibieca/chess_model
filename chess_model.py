@@ -22,7 +22,9 @@ class Piece(object):
 		self.valid_movements = None
 		self.initial_pos = None
 		# self.pieceCount = 1
+		# self.board1 = board()
 
+	
 class Pawn(Piece):
 	def set_position(self, position):
 		self.actual_pos = position
@@ -39,7 +41,26 @@ class Pawn(Piece):
 class Queen(Piece):
 	pass
 
+class Board(object):
+	def __init__(self):
+		self.color_board = [['BW'[(i + j + 8 % 2 + 1) % 2] for i in range(8)] for j in range(8)]
+		self.notation_board = []
+		# board = []
+		temp = []
+		for x in '87654321':
+		    for y in 'abcdefgh':
+		        temp.append(y + x)
+		    self.notation_board.append(temp)	
+		    temp = []
+
+	def get_board(self, type=""):
+		if type == "color":	return self.color_board
+		return self.notation_board
+
 p1 = Pawn('white')
 p2 = Pawn('white')
 p2.set_position("A2")
-print p2.get_status()
+# print p2.get_status()
+
+chess = Board()
+print chess.get_board('')
