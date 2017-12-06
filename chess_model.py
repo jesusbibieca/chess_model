@@ -51,7 +51,27 @@ class Piece(object):
 class Pawn(Piece):
 	def __str__(self):
 		return "This is a Pawn's instance."
-	
+
+	def promotion(self):
+		self.captured = True
+		return "This pawn got promoted to a better piece."
+
+	def available_moves(self):
+		current = self.get_position()
+		availability = []
+		temp = int(current[1])
+		if self.get_color() == 'white' and current == self.initial_pos:
+			availability.append(current[0] + str(temp + 1))
+			availability.append(current[0] + str(temp + 2))
+		elif self.get_color() == 'white' and current != self.initial_pos:
+			availability.append(current[0] + str(temp + 1))
+		elif self.get_color() == 'black' and current == self.initial_pos:
+			availability.append(current[0] + str(temp - 1))
+			availability.append(current[0] + str(temp - 2))
+		else:
+			availability.append(current[0] + str(temp - 1))
+		return availability
+			
 class Queen(Piece):
 	def __str__(self):
 		return "This is a Queen's instance."
@@ -72,12 +92,15 @@ class Board(object):
 		if type == "color":	return self.color_board
 		return self.notation_board
 
-p1 = Pawn('white')
+p1 = Pawn('black')
 p2 = Pawn('white')
 chess = Board().get_board()
-position_setter = choice(chess[6])
-p2.set_initial_position(position_setter)
-print p2.get_status()
+position_setter = choice(chess[1])
+p1.set_initial_position(position_setter)
+print p1.get_position()
 new_move = raw_input("Move the pawn ")
-p2.move(new_move)
-print p2.get_position()
+p1.move(new_move)
+print p1.get_position()
+print p1.available_moves()
+
+
