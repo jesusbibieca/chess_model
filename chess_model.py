@@ -75,6 +75,49 @@ class Pawn(Piece):
 class Queen(Piece):
 	def __str__(self):
 		return "This is a Queen's instance."
+
+	def available_moves(self, chess):
+		position = self.actual_pos
+		# position = 'a8'
+		result = []
+		result = [x for each in chess if position in each for x in each if x not in result and x != position]
+	    # for each in chess:
+	        # if target in each:
+	            # for x in each:
+	                # if x not in result and x != target:
+	                    # result.append(x)
+		tar1 = position[0]
+		for each in chess:
+			for x in each:
+				if tar1 in x and x != position:
+					result.append(x)
+	    # return result
+	    # position = chess1[0][0]
+	    # result = []
+		TOP = chess[0]
+		BOTTOM = chess[7]
+		LEFT = ['a8', 'a7', 'a6', 'a5', 'a4', 'a3', 'a2', 'a1']
+		RIGHT = ['h8', 'h7', 'h6', 'h5', 'h4', 'h3', 'h2', 'h1']
+	    # hacer una lista con todos los bordes y comparar los bordes para saber hacia donde ir
+		if position in TOP:
+			if position in LEFT:
+				for x in xrange(1, 8):
+					result.append(chess[x][x])
+			elif position in RIGHT:
+				x, y = 0, 7
+				while x != 7:
+					x += 1
+					y -= 1
+					result.append(chess1[x][y])
+			else:
+				return index_2d(chess1, position), position
+		return result
+	
+	def index_2d(self, myList, target):
+		for i, x in enumerate(myList):
+			if target in x:
+				return (i, x.index(target))	
+
 	
 class Board(object):
 	def __init__(self):
@@ -92,15 +135,32 @@ class Board(object):
 		if type == "color":	return self.color_board
 		return self.notation_board
 
-p1 = Pawn('black')
-p2 = Pawn('white')
+
 chess = Board().get_board()
 position_setter = choice(chess[1])
-p1.set_initial_position(position_setter)
-print p1.get_position()
-new_move = raw_input("Move the pawn ")
-p1.move(new_move)
-print p1.get_position()
-print p1.available_moves()
 
+
+#testing pawns
+# p1 = Pawn('black')
+# p2 = Pawn('white')
+# p1.set_initial_position(position_setter)
+# print p1.get_position()
+# new_move = raw_input("Move the pawn ")
+# p1.move(new_move)
+# print p1.get_position()
+# print p1.available_moves()
+
+#testing queen
+q1 = Queen('black')
+print q1.get_color()
+if q1.get_color() == 'white':
+	q1.set_initial_position('d1')
+else:
+	q1.set_initial_position('d8')
+
+
+print q1.get_position()
+new_move = raw_input("Move the Queen ")
+q1.move(new_move)
+print q1.available_moves(chess)
 
