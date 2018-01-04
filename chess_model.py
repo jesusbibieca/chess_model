@@ -97,7 +97,19 @@ class Queen(Piece):
 	            if tar1 in x and x != position:
 	                result.append(x)
    
-    return result	
+    return result
+
+    def magicBishop(array, x_init, y_init):
+	    pass
+
+	def bishop():#ok so far
+	    # result = rook()
+	    result = []
+	    actual_pos = 'e4' #set the actual_pos
+	    x_init, y_init = index_2d(chess, actual_pos) # set the indexes of the actual_pos
+	    magicBishop(result, x_init, y_init)
+
+	    return result	
 
 class Board(object):
 	def __init__(self):
