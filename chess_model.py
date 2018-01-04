@@ -100,7 +100,26 @@ class Queen(Piece):
     return result
 
     def magicBishop(array, x_init, y_init):
-	    pass
+	    x, y = x_init, y_init
+	    while y != 0 and x != 0:
+	        x -= 1
+	        y -= 1
+	        array.append(chess[x][y])
+	    x, y = x_init, y_init
+	    while x != 7 and y != 7:
+	        x += 1
+	        y += 1
+	        array.append(chess[x][y])
+	    x, y = x_init, y_init
+	    while x != 7 and y != 0:
+	        x += 1
+	        y -= 1
+	        array.append(chess[x][y])
+	    x, y = x_init, y_init
+	    while x != 0 and y != 7:
+	        x -= 1
+	        y += 1
+	        array.append(chess[x][y])
 
 	def bishop():#ok so far
 	    # result = rook()
