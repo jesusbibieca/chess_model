@@ -76,60 +76,60 @@ class Queen(Piece):
 	def __str__(self):
 		return "This is a Queen's instance."
 
-	def available_moves(self, chess):
-		pass
+	def available_moves(self):
+		result = rook(self.actual_pos)
+		result.append(bishop())
+		return result
 	
-	def index_2d(self, myList, target):
-		for i, x in enumerate(myList):
-			if target in x:
-				return (i, x.index(target))
+def index_2d(myList, target):
+	for i, x in enumerate(myList):
+		if target in x:
+			return (i, x.index(target))	
 
-	def rook():
-	    # chess = Board().get_board()
-	    position = self.actual_pos
-	    result = []
-	    result = [x for each in chess if position in each for x in each 
-	              if x not in result and x != position]
-	    
-	    tar1 = position[0]
-	    for each in chess:
-	        for x in each:
-	            if tar1 in x and x != position:
-	                result.append(x)
-   
+def rook(poss):
+    # chess = Board().get_board()
+    position = poss
+    result = []
+    result = [x for each in chess if position in each for x in each 
+              if x not in result and x != position]
+    
+    tar1 = position[0]
+    for each in chess:
+        for x in each:
+            if tar1 in x and x != position:
+                result.append(x)
+
     return result
+def magicBishop(array, x_init, y_init):
+    x, y = x_init, y_init
+    while y != 0 and x != 0:
+        x -= 1
+        y -= 1
+        array.append(chess[x][y])
+    x, y = x_init, y_init
+    while x != 7 and y != 7:
+        x += 1
+        y += 1
+        array.append(chess[x][y])
+    x, y = x_init, y_init
+    while x != 7 and y != 0:
+        x += 1
+        y -= 1
+        array.append(chess[x][y])
+    x, y = x_init, y_init
+    while x != 0 and y != 7:
+        x -= 1
+        y += 1
+        array.append(chess[x][y])
 
-    def magicBishop(array, x_init, y_init):
-	    x, y = x_init, y_init
-	    while y != 0 and x != 0:
-	        x -= 1
-	        y -= 1
-	        array.append(chess[x][y])
-	    x, y = x_init, y_init
-	    while x != 7 and y != 7:
-	        x += 1
-	        y += 1
-	        array.append(chess[x][y])
-	    x, y = x_init, y_init
-	    while x != 7 and y != 0:
-	        x += 1
-	        y -= 1
-	        array.append(chess[x][y])
-	    x, y = x_init, y_init
-	    while x != 0 and y != 7:
-	        x -= 1
-	        y += 1
-	        array.append(chess[x][y])
+def bishop():#ok so far
+    # result = rook()
+    result = []
+    actual_pos = 'e4' #set the actual_pos
+    x_init, y_init = index_2d(chess, actual_pos) # set the indexes of the actual_pos
+    magicBishop(result, x_init, y_init)
 
-	def bishop():#ok so far
-	    # result = rook()
-	    result = []
-	    actual_pos = 'e4' #set the actual_pos
-	    x_init, y_init = index_2d(chess, actual_pos) # set the indexes of the actual_pos
-	    magicBishop(result, x_init, y_init)
-
-	    return result	
-
+    return result
 class Board(object):
 	def __init__(self):
 		self.color_board = [['BW'[(i + j + 8 % 2 + 1) % 2] for i in range(8)] for j in range(8)]
@@ -163,15 +163,14 @@ position_setter = "b2"
 
 #testing queen
 q1 = Queen('black')
-print q1.get_color()
+# print q1.get_color()
 if q1.get_color() == 'white':
 	q1.set_initial_position('d1')
 else:
 	q1.set_initial_position('d8')
 
 
-print q1.get_position()
+# print q1.get_position()
 # new_move = raw_input("Move the Queen ")
 q1.move(position_setter)
 print q1.available_moves()
-
