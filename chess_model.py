@@ -47,7 +47,7 @@ class Piece(object):
 
 	def get_position(self):
 		return self.actual_pos
-	
+
 class Pawn(Piece):
 	def __str__(self):
 		return "This is a Pawn's instance."
@@ -77,48 +77,28 @@ class Queen(Piece):
 		return "This is a Queen's instance."
 
 	def available_moves(self, chess):
-		position = self.actual_pos
-		# position = 'a8'
-		result = []
-		result = [x for each in chess if position in each for x in each if x not in result and x != position]
-	    # for each in chess:
-	        # if target in each:
-	            # for x in each:
-	                # if x not in result and x != target:
-	                    # result.append(x)
-		tar1 = position[0]
-		for each in chess:
-			for x in each:
-				if tar1 in x and x != position:
-					result.append(x)
-	    # return result
-	    # position = chess1[0][0]
-	    # result = []
-		TOP = chess[0]
-		BOTTOM = chess[7]
-		LEFT = ['a8', 'a7', 'a6', 'a5', 'a4', 'a3', 'a2', 'a1']
-		RIGHT = ['h8', 'h7', 'h6', 'h5', 'h4', 'h3', 'h2', 'h1']
-	    # hacer una lista con todos los bordes y comparar los bordes para saber hacia donde ir
-		if position in TOP:
-			if position in LEFT:
-				for x in xrange(1, 8):
-					result.append(chess[x][x])
-			elif position in RIGHT:
-				x, y = 0, 7
-				while x != 7:
-					x += 1
-					y -= 1
-					result.append(chess1[x][y])
-			else:
-				return index_2d(chess1, position), position
-		return result
+		pass
 	
 	def index_2d(self, myList, target):
 		for i, x in enumerate(myList):
 			if target in x:
-				return (i, x.index(target))	
+				return (i, x.index(target))
 
-	
+	def rook():
+	    chess = Board().get_board()
+	    position = 'a8'
+	    result = []
+	    result = [x for each in chess if position in each for x in each 
+	              if x not in result and x != position]
+	    
+	    tar1 = position[0]
+	    for each in chess:
+	        for x in each:
+	            if tar1 in x and x != position:
+	                result.append(x)
+   
+    return result	
+
 class Board(object):
 	def __init__(self):
 		self.color_board = [['BW'[(i + j + 8 % 2 + 1) % 2] for i in range(8)] for j in range(8)]
@@ -135,9 +115,9 @@ class Board(object):
 		if type == "color":	return self.color_board
 		return self.notation_board
 
-
 chess = Board().get_board()
 position_setter = choice(chess[1])
+position_setter = "b2"
 
 
 #testing pawns
@@ -160,7 +140,7 @@ else:
 
 
 print q1.get_position()
-new_move = raw_input("Move the Queen ")
-q1.move(new_move)
-print q1.available_moves(chess)
+# new_move = raw_input("Move the Queen ")
+q1.move(position_setter)
+print q1.available_moves()
 

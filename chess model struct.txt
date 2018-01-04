@@ -8,8 +8,10 @@ Tener una class para piezas en general
 
     class pawn
         promotion
+	available moves
 
     class queen
+	available moves
 
 
 ____________________________________
