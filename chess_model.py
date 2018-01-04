@@ -85,8 +85,8 @@ class Queen(Piece):
 				return (i, x.index(target))
 
 	def rook():
-	    chess = Board().get_board()
-	    position = 'a8'
+	    # chess = Board().get_board()
+	    position = self.actual_pos
 	    result = []
 	    result = [x for each in chess if position in each for x in each 
 	              if x not in result and x != position]
